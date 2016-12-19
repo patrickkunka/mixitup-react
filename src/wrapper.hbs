@@ -1,0 +1,22 @@
+{{>banner}}
+
+(function(window) {
+    'use strict';
+
+    var mixitupReact = function(mixitup) {
+        var h = mixitup.h;
+
+        {{>factory}}
+
+        {{>target}}
+
+        {{>version-check}}
+    };
+
+    mixitupReact.TYPE                    = 'mixitup-extension';
+    mixitupReact.NAME                    = '{{name}}';
+    mixitupReact.EXTENSION_VERSION       = '{{version}}';
+    mixitupReact.REQUIRE_CORE_VERSION    = '{{coreVersion}}';
+
+    {{>module-definitions}}
+})(window);
