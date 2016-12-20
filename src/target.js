@@ -17,7 +17,6 @@ mixitup.Target.registerFilter('renderRender', 'react', function(render, data) {
         return function() {
             var props        = {},
                 reactElement = null,
-                uid          = data[self.mixer.config.data.uidKey],
                 didMount     = Component.prototype.componentDidMount,
                 placeholder  = null,
                 el           = null;
@@ -34,13 +33,9 @@ mixitup.Target.registerFilter('renderRender', 'react', function(render, data) {
                 self.reactComponent = this;
             };
 
-            // Pass uid as key
-
-            props.key = uid;
-
-            // Cache component reference
-
             props.onMixitupTargetMounted = function() {
+                // Cache component reference
+
                 self.reactComponent = this;
             };
 
@@ -49,11 +44,13 @@ mixitup.Target.registerFilter('renderRender', 'react', function(render, data) {
             reactElement = React.createElement(Component, props);
 
             if (self.reactComponent) {
-                // Replace the node with a placeholder
+                if (self.dom.el.parentElement === self.mixer.dom.parent) {
+                    // Replace the node with a placeholder if currently in DOM
 
-                placeholder = document.createElement('span');
+                    placeholder = document.createComment('mixitup-target');
 
-                self.mixer.dom.parent.replaceChild(placeholder, self.dom.el);
+                    self.mixer.dom.parent.replaceChild(placeholder, self.dom.el);
+                }
 
                 // Return the node to its birthplace for diffing
 

@@ -7,7 +7,7 @@
   "private": true,
   "main": "./dist/mixitup-react.js",
   "dependencies": {
-      "mixitup": "^3.1.2"
+      "mixitup": "^3.1.3"
   },
   "devDependencies": {
     "gulp": "^3.8.8",

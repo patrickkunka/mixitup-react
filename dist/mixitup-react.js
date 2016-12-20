@@ -1,7 +1,7 @@
 /**!
  * MixItUp React v3.0.0-beta
  * A lightweight shim between the MixItUp Dataset API and React
- * Build d19788a2-4884-4e58-94c4-68b744f7ae26
+ * Build 15f9eb34-52f4-4397-b36a-1b845cee82e7
  *
  * Requires mixitup.js ^3.1.2
  *
@@ -59,7 +59,6 @@
                 return function() {
                     var props        = {},
                         reactElement = null,
-                        uid          = data[self.mixer.config.data.uidKey],
                         didMount     = Component.prototype.componentDidMount,
                         placeholder  = null,
                         el           = null;
@@ -76,13 +75,9 @@
                         self.reactComponent = this;
                     };
 
-                    // Pass uid as key
-
-                    props.key = uid;
-
-                    // Cache component reference
-
                     props.onMixitupTargetMounted = function() {
+                        // Cache component reference
+
                         self.reactComponent = this;
                     };
 
@@ -91,11 +86,13 @@
                     reactElement = React.createElement(Component, props);
 
                     if (self.reactComponent) {
-                        // Replace the node with a placeholder
+                        if (self.dom.el.parentElement === self.mixer.dom.parent) {
+                            // Replace the node with a placeholder if currently in DOM
 
-                        placeholder = document.createElement('span');
+                            placeholder = document.createComment('mixitup-target');
 
-                        self.mixer.dom.parent.replaceChild(placeholder, self.dom.el);
+                            self.mixer.dom.parent.replaceChild(placeholder, self.dom.el);
+                        }
 
                         // Return the node to its birthplace for diffing
 
