@@ -1,11 +1,11 @@
 /**!
  * MixItUp React v3.0.0-beta
  * A lightweight shim between the MixItUp Dataset API and React
- * Build 15f9eb34-52f4-4397-b36a-1b845cee82e7
+ * Build cdc8ba5b-2bdf-4365-aa3a-7868080056f6
  *
- * Requires mixitup.js ^3.1.2
+ * Requires mixitup.js ^3.1.4
  *
- * @copyright Copyright 2014-2016 KunkaLabs Limited.
+ * @copyright Copyright 2014-2017 KunkaLabs Limited.
  * @author    KunkaLabs Limited.
  * @link
  *
@@ -140,7 +140,7 @@
     mixitupReact.TYPE                    = 'mixitup-extension';
     mixitupReact.NAME                    = 'mixitup-react';
     mixitupReact.EXTENSION_VERSION       = '3.0.0-beta';
-    mixitupReact.REQUIRE_CORE_VERSION    = '^3.1.2';
+    mixitupReact.REQUIRE_CORE_VERSION    = '^3.1.4';
 
     if (typeof exports === 'object' && typeof module === 'object') {
         module.exports = mixitupReact;
